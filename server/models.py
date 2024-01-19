@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy.orm import validates
 
 
 db = SQLAlchemy()
@@ -43,6 +44,12 @@ class RestaurantPizza(db.Model, SerializerMixin):
     # serialize to prevent recursion
     serialize_rules = ("-restaurant.restaurant_pizzas",
                        "-pizza.restaurant_pizzas",)
+
+    @validates("price")
+    def validate_price(self, key, price):
+        if price not in range(1, 30):
+            raise ValueError("Price must be between 1 and 30")
+        return price
 
     def __repr__(self):
         return f'''RestaurantPizza {self.price}'''

@@ -46,14 +46,14 @@ def seed_database():
     print("Inserting restaurant_pizzas 🏨 🍕...")
     for _ in range(10):
         restaurant_pizza = RestaurantPizza(
-            price=round(random.uniform(500.00, 2000.00), 2),
+            price=random.randint(1, 30),
             restaurant_id=random.choice(restaurant_ids),
             pizza_id=random.choice(pizza_ids)
         )
 
         db.session.add(restaurant_pizza)
         db.session.commit()
-        
+
     print("Complete 🤝")
 
 
