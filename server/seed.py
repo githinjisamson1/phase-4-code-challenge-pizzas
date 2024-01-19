@@ -9,10 +9,12 @@ fake = Faker()
 
 def seed_database():
     # empty tables before seeding
+    print("Deleting records...")
     Restaurant.query.delete()
     RestaurantPizza.query.delete()
     Pizza.query.delete()
 
+    print("Inserting restaurants 🏨🏨🏨...")
     for _ in range(10):
         restaurant = Restaurant(
             name=fake.unique.name(),
@@ -27,6 +29,7 @@ def seed_database():
     ingredients_list = ['Pepperoni', 'Mushroom', 'Spinach', 'Artichoke',
                         'Chicken', 'Olives', 'Pineapple', 'Bacon', 'Onion', 'Tomato']
 
+    print("Inserting pizzas 🍕🍕🍕...")
     for _ in range(10):
         pizza = Pizza(
             name=random.choice(pizzas_list),
@@ -40,6 +43,7 @@ def seed_database():
     restaurant_ids = [restaurant.id for restaurant in Restaurant.query.all()]
     pizza_ids = [pizza.id for pizza in Pizza.query.all()]
 
+    print("Inserting restaurant_pizzas 🏨 🍕...")
     for _ in range(10):
         restaurant_pizza = RestaurantPizza(
             price=round(random.uniform(500.00, 2000.00), 2),
@@ -49,6 +53,8 @@ def seed_database():
 
         db.session.add(restaurant_pizza)
         db.session.commit()
+        
+    print("Complete 🤝")
 
 
 if __name__ == "__main__":

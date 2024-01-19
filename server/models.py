@@ -17,8 +17,8 @@ class Restaurant(db.Model, SerializerMixin):
         "RestaurantPizza", backref="restaurant")
 
     # many to many via association table restaurant_pizzas
-    pizzas = db.relationship(
-        "RestaurantPizza", back_populates="restaurants")
+    # pizzas = db.relationship(
+    #     "RestaurantPizza", back_populates="restaurants")
 
     # serialize to prevent recursion
     serialize_rules = ("-restaurant_pizzas.restaurant",)
@@ -37,12 +37,12 @@ class RestaurantPizza(db.Model, SerializerMixin):
     pizza_id = db.Column(db.Integer, db.ForeignKey("pizzas.id"))
 
     # relationship
-    restaurants = db.relationship("Restaurant", back_populates="pizzas")
-    pizzas = db.relationship("Pizza", back_populates="restaurants")
+    # restaurants = db.relationship("Restaurant", back_populates="pizzas")
+    # pizzas = db.relationship("Pizza", back_populates="restaurants")
 
     # serialize to prevent recursion
     serialize_rules = ("-restaurant.restaurant_pizzas",
-                       "-pizza.restaurant_pizas",)
+                       "-pizza.restaurant_pizzas",)
 
     def __repr__(self):
         return f'''RestaurantPizza {self.price}'''
@@ -60,8 +60,8 @@ class Pizza(db.Model, SerializerMixin):
         "RestaurantPizza", backref="pizza")
 
     # many to many via association table restaurant_pizzas
-    restaurants = db.relationship(
-        "RestaurantPizza", back_populates="pizzas")
+    # restaurants = db.relationship(
+    #     "RestaurantPizza", back_populates="pizzas")
 
     # serialize to prevent recursion
     serialize_rules = ("-restaurant_pizzas.pizza",)
