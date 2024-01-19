@@ -68,22 +68,33 @@ class Pizzas(Resource):
 
 class RestaurantPizzas(Resource):
     def post(self):
-        data = request.get_json()
 
-        new_restaurant_pizza = RestaurantPizza(
-            price=data.get("price"),
-            restaurant_id=data.get("restaurant_id"),
-            pizza_id=data.get("pizza_id")
-        )
+        try:
 
-        db.session.add(new_restaurant_pizza)
-        db.session.commit()
+            data = request.get_json()
 
-        response = make_response(jsonify(new_restaurant_pizza.to_dict()), 201)
+            new_restaurant_pizza = RestaurantPizza(
+                price=data.get("price"),
+                restaurant_id=data.get("restaurant_id"),
+                pizza_id=data.get("pizza_id")
+            )
 
-        response.headers["Content-Type"] = "application/json"
+            db.session.add(new_restaurant_pizza)
+            db.session.commit()
 
-        return response
+            response = make_response(
+                jsonify(new_restaurant_pizza.to_dict()), 201)
+
+            response.headers["Content-Type"] = "application/json"
+
+            return response
+
+        except ValueError as e:
+            response = make_response(jsonify({
+                "error": [str(e)]
+            }), 422)
+            
+            return response
 
 
 # routes
