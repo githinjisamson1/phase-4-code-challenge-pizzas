@@ -1,5 +1,8 @@
-from config import db
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
+
+
+db = SQLAlchemy()
 
 
 class Restaurant(db.Model, SerializerMixin):
