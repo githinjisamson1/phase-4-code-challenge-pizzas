@@ -1,0 +1,48 @@
+.pizza {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 7px 3px #ccc;
+}
+
+.pizza img {
+  border-radius: 5px;
+  width: 100%;
+  height: 250px;
+  /* object-fit: cover; */
+}
+
+.pizza .info {
+  padding: 1rem;
+  line-height: 2rem;
+  color: #333;
+}
+
+.pizza .info p {
+  font-weight: 200;
+}
+
+.pizza .info button {
+  padding: 7px;
+  border: none;
+  outline: none;
+  background-color: goldenrod;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 300ms ease;
+  letter-spacing: 0.2rem;
+  cursor: pointer;
+}
+
+.pizza .info button:hover {
+  background-color: #fff;
+  color: goldenrod;
+  border: 1px solid #ccc;
+}
+
+.pizza .info h3 {
+  letter-spacing: 0.75rem;
+}
+
+.pizza .info p {
+  letter-spacing: 0.25rem;
+}
