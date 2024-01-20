@@ -2,13 +2,18 @@ import "./searchForm.css";
 import { useGlobalPizzasContext } from "../../context/pizzasContext";
 
 const SearchForm = () => {
+  // provide PizzasContext
   const { searchTerm, setSearchTerm } = useGlobalPizzasContext();
 
+  // handleChange
   const handleSearchTermChange = (e) => {
     setSearchTerm(e.target.value);
+    // console.log(searchTerm);
   };
 
+  // handleSubmit
   const handleSubmit = (e) => {
+    // prevent page refresh
     e.preventDefault();
   };
 

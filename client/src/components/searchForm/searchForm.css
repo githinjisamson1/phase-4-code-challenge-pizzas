@@ -1,0 +1,29 @@
+:root {
+  --blue: #0077b6;
+}
+
+.search-form {
+  /* background-color: red; */
+  height: 100px;
+  position: relative;
+}
+
+.search-form input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #cccc;
+  outline: none;
+  caret-color: var(--blue);
+  box-shadow: 0 0 5px --blue;
+  color: #333;
+  letter-spacing: .25rem;
+}
+
+.search-form input:focus {
+  border: 2px solid goldenrod;
+}
