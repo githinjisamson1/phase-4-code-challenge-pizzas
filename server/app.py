@@ -115,6 +115,57 @@ class Pizzas(Resource):
         return response
 
 
+class PizzaById(Resource):
+    # !GET
+    def get(self, pizza_id):
+        pizza = Pizza.query.filter_by(id=pizza_id).first()
+
+        if not pizza:
+            return make_response(jsonify({"error": "Pizza not found!"}), 400)
+
+        response = make_response(jsonify(pizza.to_dict()), 200)
+
+        response.headers["Content-Type"] = "application/json"
+
+        return response
+
+    # !PATCH
+    def patch(self, pizza_id):
+        data = request.get_json()
+
+        pizza = Pizza.query.filter_by(id=pizza_id).first()
+
+        if not pizza:
+            return make_response(jsonify({"error": "Pizza not found!"}), 400)
+
+        for attr in data:
+            setattr(pizza, attr, data.get(attr))
+
+        db.session.commit()
+
+        response = make_response(jsonify(pizza.to_dict()), 200)
+
+        response.headers["Content-Type"] = "application/json"
+
+        return response
+
+    # !DELETE
+    def delete(self, pizza_id):
+        pizza = Pizza.query.filter_by(id=pizza_id).first()
+
+        if not pizza:
+            return make_response(jsonify({"error": "Pizza not found!"}), 400)
+
+        db.session.delete(pizza)
+        db.session.commit()
+
+        response = make_response(
+            jsonify({"success": True, "message": "Pizza deleted"}), 200)
+
+        response.headers["Content-Type"] = "application/json"
+
+        return response
+
 class RestaurantPizzas(Resource):
     # !POST
     def post(self):
@@ -150,6 +201,7 @@ api.add_resource(Index, "/")
 api.add_resource(Restaurants, "/restaurants")
 api.add_resource(RestaurantById, "/restaurants/<int:restaurant_id>")
 api.add_resource(Pizzas, "/pizzas")
+api.add_resource(PizzaById, "/pizzas/<int:pizza_id>")
 api.add_resource(RestaurantPizzas, "/restaurant_pizzas")
 
 # executed only if run/not if imported
