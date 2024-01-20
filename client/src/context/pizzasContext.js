@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useState } from "react";
 
 // PizzasContext => returns {Provider,  Consumer}
 const PizzasContext = React.createContext();
@@ -50,9 +50,13 @@ export const PizzasProvider = ({ children }) => {
     initialPizzasState
   );
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   // wrap return in Provider
   return (
-    <PizzasContext.Provider value={{ pizzasState, dispatchForPizzas }}>
+    <PizzasContext.Provider
+      value={{ pizzasState, dispatchForPizzas, searchTerm, setSearchTerm }}
+    >
       {children}
     </PizzasContext.Provider>
   );
