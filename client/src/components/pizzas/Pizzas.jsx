@@ -1,18 +1,19 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./pizzas.css";
 import { useGlobalPizzasContext } from "../../context/pizzasContext";
+import Pizza from "../pizza/Pizza";
 
 const Pizzas = () => {
   // provide PizzasContext
-  const { searchTerm, pizzasState, dispatchForPizzas } =
-    useGlobalPizzasContext();
+  const { pizzasState, dispatchForPizzas } = useGlobalPizzasContext();
 
   // function to fetch pizzas
-  // useCallback to prevent creating it from scratch
-  const fetchPizzas = useCallback(() => {
+  const fetchAllPizzas = () => {
     dispatchForPizzas({ type: "FETCH_REQUEST" });
 
-    // fetch API
+    // fetch API - all
+    // "proxy": "http://127.0.0.1:5555"
+
     fetch("/pizzas")
       .then((response) => {
         // convert readableStream to JSON
@@ -23,16 +24,23 @@ const Pizzas = () => {
         dispatchForPizzas({ type: "FETCH_SUCCESS", payload: data });
       })
       .catch((error) => {
-        dispatchForPizzas({ type: "FETCH_FAILURE", payload: error });
+        dispatchForPizzas({ type: "FETCH_FAILURE", payload: error.message });
       });
-  }, [searchTerm]);
+  };
 
-  // run useEffect everytime searchTerm changes
+  // run useEffect on initial render/once
   useEffect(() => {
-    fetchPizzas();
-  }, [searchTerm, fetchPizzas]);
+    fetchAllPizzas();
+  }, []);
 
-  return <div>Pizzas</div>;
+  return (
+    <div className="pizzas">
+      {/* iterate pizzas */}
+      {pizzasState.pizzas.map((pizza) => {
+        return <Pizza key={pizza.id} {...pizza} />;
+      })}
+    </div>
+  );
 };
 
 export default Pizzas;
