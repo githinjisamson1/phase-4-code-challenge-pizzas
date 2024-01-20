@@ -2,18 +2,21 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 
-
+# instantiate SQLAlchemy
 db = SQLAlchemy()
+
+# !MODELS
 
 
 class Restaurant(db.Model, SerializerMixin):
     __tablename__ = "restaurants"
 
+    # columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     address = db.Column(db.String)
 
-    # one to many
+    # one to many r/ship
     restaurant_pizzas = db.relationship(
         "RestaurantPizza", backref="restaurant")
 
@@ -32,12 +35,13 @@ class Restaurant(db.Model, SerializerMixin):
 class RestaurantPizza(db.Model, SerializerMixin):
     __tablename__ = "restaurant_pizzas"
 
+    # columns
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
     restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"))
     pizza_id = db.Column(db.Integer, db.ForeignKey("pizzas.id"))
 
-    # relationship
+    # relationships
     # restaurants = db.relationship("Restaurant", back_populates="pizzas")
     # pizzas = db.relationship("Pizza", back_populates="restaurants")
 
@@ -45,6 +49,7 @@ class RestaurantPizza(db.Model, SerializerMixin):
     serialize_rules = ("-restaurant.restaurant_pizzas",
                        "-pizza.restaurant_pizzas",)
 
+    # validation
     @validates("price")
     def validate_price(self, key, price):
         if price not in range(1, 30):
@@ -58,11 +63,12 @@ class RestaurantPizza(db.Model, SerializerMixin):
 class Pizza(db.Model, SerializerMixin):
     __tablename__ = "pizzas"
 
+    # columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     ingredients = db.Column(db.String)
 
-    # one to many
+    # one to many r/ship
     restaurant_pizzas = db.relationship(
         "RestaurantPizza", backref="pizza")
 

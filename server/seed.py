@@ -4,9 +4,10 @@ from models import Restaurant, RestaurantPizza, Pizza
 from faker import Faker
 import random
 
+# instantiate Faker
 fake = Faker()
 
-
+# function to seed database
 def seed_database():
     # empty tables before seeding
     print("Deleting records...")
@@ -16,6 +17,7 @@ def seed_database():
 
     print("Inserting restaurants 🏨🏨🏨...")
     for _ in range(10):
+        # generate 10 Restaurant instances
         restaurant = Restaurant(
             name=fake.unique.name(),
             address=fake.address()
@@ -31,6 +33,7 @@ def seed_database():
 
     print("Inserting pizzas 🍕🍕🍕...")
     for _ in range(10):
+        # generate 10 Pizza instances
         pizza = Pizza(
             name=random.choice(pizzas_list),
             ingredients=random.choice(ingredients_list),
@@ -45,6 +48,7 @@ def seed_database():
 
     print("Inserting restaurant_pizzas 🏨 🍕...")
     for _ in range(10):
+        # generate 10 RestaurantPizza instances
         restaurant_pizza = RestaurantPizza(
             price=random.randint(1, 30),
             restaurant_id=random.choice(restaurant_ids),
@@ -57,6 +61,7 @@ def seed_database():
     print("Complete 🤝")
 
 
+# executed only if run/not if imported
 if __name__ == "__main__":
     with app.app_context():
         seed_database()
