@@ -1,8 +1,11 @@
 import React from "react";
 import "./pizza.css";
+import { useNavigate } from "react-router-dom";
 
 // inline props destructuring
-const Pizza = ({ name, ingredients }) => {
+const Pizza = ({ id, name, ingredients }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="pizza">
       <img
@@ -12,7 +15,14 @@ const Pizza = ({ name, ingredients }) => {
       <div className="info">
         <h3>{name}</h3>
         <p>{ingredients}</p>
-        <button className="details">Details</button>
+        <button
+          className="details"
+          onClick={() => {
+            navigate(`/pizzas/${id}`);
+          }}
+        >
+          Details
+        </button>
       </div>
     </div>
   );
