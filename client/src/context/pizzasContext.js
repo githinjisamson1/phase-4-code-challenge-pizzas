@@ -12,7 +12,7 @@ export const PizzasProvider = ({ children }) => {
     error: "",
   };
 
-  // pizzasReducer to switcth through action types
+  // pizzasReducer to switch through action types
   const pizzasReducer = (state, action) => {
     switch (action.type) {
       case "FETCH_REQUEST":
@@ -50,6 +50,7 @@ export const PizzasProvider = ({ children }) => {
     initialPizzasState
   );
 
+  // state for searchTerm
   const [searchTerm, setSearchTerm] = useState("");
 
   // wrap return in Provider
@@ -62,7 +63,7 @@ export const PizzasProvider = ({ children }) => {
   );
 };
 
-// useGlobalPizzasContext can be accessd globally
+// useGlobalPizzasContext can be accessed globally
 export const useGlobalPizzasContext = () => {
   return useContext(PizzasContext);
 };
