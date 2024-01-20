@@ -1,0 +1,25 @@
+:root {
+  --blue: #0077b6;
+  --white: #fff;
+}
+
+header {
+  background-color: var(--blue);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem 0.5rem 2rem;
+  position: sticky;
+}
+
+.logo a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 2.5rem;
+  font-family: "Dancing Script", cursive;
+}
+
+.navigation-links a {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  transition: all 300ms ease;
+}
