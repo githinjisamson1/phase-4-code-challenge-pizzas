@@ -12,21 +12,25 @@ Note: You are required to come up with a fully built React frontend application,
 ```http
   GET /restaurants
 ```
+
 #### Post restaurant
 
 ```http
   POST /restaurants
 ```
+
 #### Get restaurant
 
 ```http
   GET /restaurants/${id}
 ```
+
 #### Patch restaurant
 
 ```http
   PATCH /restaurants/${id}
 ```
+
 #### Delete restaurant
 
 ```http
@@ -38,21 +42,25 @@ Note: You are required to come up with a fully built React frontend application,
 ```http
   GET /pizzas
 ```
+
 #### Post pizza
 
 ```http
   POST /pizzas
 ```
+
 #### Get pizza
 
 ```http
   GET /pizzas/${id}
 ```
+
 #### Patch pizza
 
 ```http
   PATCH /pizzas/${id}
 ```
+
 #### Delete pizza
 
 ```http
@@ -65,33 +73,19 @@ Note: You are required to come up with a fully built React frontend application,
   POST /restaurant_pizzas
 ```
 
-
-
-
-
-
-
-
 ## Authors
 
 - [@githinjisamson1](https://www.github.com/githinjisamson1)
 
-
 ## Contributing
 
 Contributions are always welcome!
-
-
-
 
 ## Environment Variables
 
 To run this project, you will need to add the following environment variable to your .env file
 
 `SECRET_KEY`
-
-
-
 
 ## Features
 
@@ -106,7 +100,6 @@ Validations for the `RestaurantPizza` model:
 ## Feedback
 
 If you have any feedback, please reach out to us at githinjisamson148@gmail.com
-
 
 ## Installation
 
@@ -127,9 +120,8 @@ navigate to root directory
 cd client
 npm install
 npm start
-
 ```
-    
+
 ## Lessons Learned
 
 - Core Components of Python Web Applications
@@ -141,7 +133,6 @@ npm start
 - Client-Server Communication
 - Serialization
 - Full-Stack Development with Flask and React
-
 
 ## License
 
