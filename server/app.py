@@ -21,7 +21,7 @@ class Index(Resource):
 
 
 class Restaurants(Resource):
-    # !GET
+    # !GET restaurants 
     def get(self):
         restaurants_lc = [restaurant.to_dict()
                           for restaurant in Restaurant.query.all()]
@@ -32,7 +32,7 @@ class Restaurants(Resource):
 
         return response
 
-    # !POST
+    # !POST new_restaurant
     def post(self):
         data = request.get_json()
 
@@ -52,7 +52,7 @@ class Restaurants(Resource):
 
 
 class RestaurantById(Resource):
-    # !GET
+    # !GET restaurant
     def get(self, restaurant_id):
         restaurant = Restaurant.query.filter_by(id=restaurant_id).first()
 
@@ -65,7 +65,7 @@ class RestaurantById(Resource):
 
         return response
 
-    # !PATCH
+    # !PATCH restaurant
     def patch(self, restaurant_id):
         data = request.get_json()
 
@@ -85,7 +85,7 @@ class RestaurantById(Resource):
 
         return response
 
-    # !DELETE
+    # !DELETE restaurant
     def delete(self, restaurant_id):
         restaurant = Restaurant.query.filter_by(id=restaurant_id).first()
 
@@ -104,7 +104,7 @@ class RestaurantById(Resource):
 
 
 class Pizzas(Resource):
-    # !GET
+    # !GET pizzas
     def get(self):
         pizzas_lc = [pizza.to_dict() for pizza in Pizza.query.all()]
 
@@ -116,7 +116,7 @@ class Pizzas(Resource):
 
 
 class PizzaById(Resource):
-    # !GET
+    # !GET pizza
     def get(self, pizza_id):
         pizza = Pizza.query.filter_by(id=pizza_id).first()
 
@@ -129,7 +129,7 @@ class PizzaById(Resource):
 
         return response
 
-    # !PATCH
+    # !PATCH pizza
     def patch(self, pizza_id):
         data = request.get_json()
 
@@ -149,7 +149,7 @@ class PizzaById(Resource):
 
         return response
 
-    # !DELETE
+    # !DELETE pizza
     def delete(self, pizza_id):
         pizza = Pizza.query.filter_by(id=pizza_id).first()
 
@@ -167,7 +167,7 @@ class PizzaById(Resource):
         return response
 
 class RestaurantPizzas(Resource):
-    # !POST
+    # !POST new_restaurant_pizza
     def post(self):
         try:
             data = request.get_json()

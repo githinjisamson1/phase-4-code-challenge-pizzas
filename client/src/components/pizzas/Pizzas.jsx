@@ -7,7 +7,7 @@ const Pizzas = () => {
   // provide PizzasContext
   const { pizzasState, dispatchForPizzas } = useGlobalPizzasContext();
 
-  // function to fetch pizzas
+  // function to fetch all pizzas
   const fetchAllPizzas = () => {
     dispatchForPizzas({ type: "FETCH_REQUEST" });
 
@@ -35,7 +35,7 @@ const Pizzas = () => {
 
   return (
     <div className="pizzas">
-      {/* iterate pizzas */}
+      {/* iterate pizzas + prop drill pizza attributes*/}
       {pizzasState.pizzas.map((pizza) => {
         return <Pizza key={pizza.id} {...pizza} />;
       })}

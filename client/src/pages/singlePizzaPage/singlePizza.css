@@ -1,0 +1,33 @@
+:root {
+  --blue: #0077b6;
+}
+
+.single-pizza {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color: red; */
+  display: flex;
+  width: 50%;
+  height: 300px;
+  border-radius: 7px;
+  gap: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 7px 7px #bbb;
+  line-height: 3rem;
+}
+
+.single-pizza img {
+  display: block;
+  width: 50%;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+span{
+    background-color: #f7b801;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+}
+

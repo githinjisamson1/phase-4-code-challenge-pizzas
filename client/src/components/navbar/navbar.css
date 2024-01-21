@@ -1,6 +1,8 @@
 :root {
   --blue: #0077b6;
   --white: #fff;
+  --black: #333;
+  --grey: #555;
 }
 
 header {
@@ -9,6 +11,7 @@ header {
   justify-content: space-between;
   padding: 1rem 2rem 0.5rem 2rem;
   position: sticky;
+  box-shadow: 0 5px 5px var(--grey);
 }
 
 .logo a {

@@ -1,7 +1,11 @@
+:root {
+  --blue: #0077b6;
+}
+
 .pizza {
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 7px 3px #ccc;
+  box-shadow: 0 7px 7px #bbb;
 }
 
 .pizza img {

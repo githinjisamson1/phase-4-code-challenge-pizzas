@@ -9,7 +9,10 @@ import SinglePizza from "./pages/singlePizzaPage/SinglePizza";
 const App = () => {
   return (
     <div>
+      {/* Navbar appears on all pages */}
       <Navbar/>
+
+      {/* routes */}
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/about" element={<About />} />

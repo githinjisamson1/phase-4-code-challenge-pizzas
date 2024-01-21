@@ -3,6 +3,7 @@ import "./navbar.css";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  // set styles based on isActive boolean flag passed from NavLink
   const navLinkStyles = ({ isActive }) => {
     return {
       textDecoration: isActive ? "underline" : "none",
@@ -15,7 +16,7 @@ const Navbar = () => {
     <header>
       <div className="logo">
         <h1>
-          <NavLink to="/">The Pizza DB</NavLink>
+          <NavLink to="/">The Pizza Inn</NavLink>
         </h1>
       </div>
 

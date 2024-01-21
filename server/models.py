@@ -5,8 +5,8 @@ from sqlalchemy.orm import validates
 # instantiate SQLAlchemy
 db = SQLAlchemy()
 
-# !MODELS
 
+# !MODELS
 
 class Restaurant(db.Model, SerializerMixin):
     __tablename__ = "restaurants"
