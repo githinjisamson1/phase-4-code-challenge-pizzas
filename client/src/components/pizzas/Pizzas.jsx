@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import "./pizzas.css";
 import { useGlobalPizzasContext } from "../../context/pizzasContext";
 import Pizza from "../pizza/Pizza";
+import Stack from "@mui/material/Stack";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const Pizzas = () => {
   // provide PizzasContext
@@ -21,17 +23,30 @@ const Pizzas = () => {
       })
       .then((data) => {
         console.log(data);
-        dispatchForPizzas({ type: "FETCH_SUCCESS", payload: data });
+        setTimeout(() => {
+          dispatchForPizzas({ type: "FETCH_SUCCESS", payload: data });
+        }, 1000);
       })
       .catch((error) => {
         dispatchForPizzas({ type: "FETCH_FAILURE", payload: error.message });
       });
   };
+  
 
   // run useEffect on initial render/once
   useEffect(() => {
     fetchAllPizzas();
   }, []);
+
+  if (pizzasState.loading) {
+    return (
+      <Stack sx={{ width: "100%", color: "grey.500", mt: "5rem" }} spacing={2}>
+        <LinearProgress color="secondary" />
+        <LinearProgress color="success" />
+        <LinearProgress color="inherit" />
+      </Stack>
+    );
+  }
 
   return (
     <div className="pizzas">

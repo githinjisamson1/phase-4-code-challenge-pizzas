@@ -1,6 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./singlePizza.css";
 import { useParams } from "react-router-dom";
+// import CircularProgress from "@mui/material/CircularProgress";
+// import LinearProgress from "@mui/material/LinearProgress";
+import Stack from "@mui/material/Stack";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const SinglePizza = () => {
   // destructure id
@@ -8,6 +12,7 @@ const SinglePizza = () => {
 
   // state for singlePizza
   const [singlePizzaState, setSinglePizzaState] = useState({});
+  const [loading, setLoading] = useState(true);
 
   // function to get single pizza
   // useCallback to prevent creating the function from scratch
@@ -15,6 +20,7 @@ const SinglePizza = () => {
   //
 
   const fetchSinglePizza = useCallback(() => {
+    setLoading(loading);
     fetch(`/pizzas/${id}`)
       .then((response) => {
         return response.json();
@@ -22,9 +28,13 @@ const SinglePizza = () => {
       .then((data) => {
         console.log(data);
         setSinglePizzaState(data);
+        setTimeout(() => {
+          setLoading(!loading);
+        }, 2000);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(!loading);
       });
   }, [id]);
 
@@ -32,6 +42,19 @@ const SinglePizza = () => {
   useEffect(() => {
     fetchSinglePizza();
   }, [id, fetchSinglePizza]);
+
+  if (loading) {
+    return (
+      <Stack
+        sx={{ width: "100%", color: "grey.500", mt: "5rem" }}
+        spacing={2}
+      >
+        <LinearProgress color="secondary" />
+        <LinearProgress color="success" />
+        <LinearProgress color="inherit" />
+      </Stack>
+    );
+  }
 
   // track restaurant_pizza
   let restaurant_pizza;

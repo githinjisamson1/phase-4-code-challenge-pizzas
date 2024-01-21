@@ -7,7 +7,7 @@ const PizzasContext = React.createContext();
 export const PizzasProvider = ({ children }) => {
   // initialPizzasState
   const initialPizzasState = {
-    loading: false,
+    loading: true,
     pizzas: [],
     error: "",
   };
