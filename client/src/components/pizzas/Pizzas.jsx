@@ -7,7 +7,8 @@ import LinearProgress from "@mui/material/LinearProgress";
 
 const Pizzas = () => {
   // provide PizzasContext
-  const { pizzasState, dispatchForPizzas } = useGlobalPizzasContext();
+  const { pizzasState, dispatchForPizzas, searchTerm } =
+    useGlobalPizzasContext();
 
   // function to fetch all pizzas
   const fetchAllPizzas = () => {
@@ -33,7 +34,6 @@ const Pizzas = () => {
         dispatchForPizzas({ type: "FETCH_FAILURE", payload: error.message });
       });
   };
-  
 
   // run useEffect on initial render/once => pass empty dependency array
   useEffect(() => {
@@ -51,12 +51,40 @@ const Pizzas = () => {
     );
   }
 
+  // initialize
+  let filteredPizzas = [];
+
+  // if user provides searchTerm
+  if (searchTerm) {
+    // if pizzas is not empty
+    if (pizzasState.pizzas) {
+      pizzasState.pizzas.map((pizza) => {
+        if (pizza.name.toLowerCase() === searchTerm.toLowerCase()) {
+          // append to the list of filteredPizzas in case of match
+          filteredPizzas.push(pizza);
+        }
+        return null;
+      });
+    }
+  } else {
+    // user has not provided searchTerm/default list of pizzas
+    filteredPizzas = pizzasState.pizzas;
+  }
+
+  console.log(filteredPizzas);
+
   return (
     <div className="pizzas">
+      {/* {pizzasState.pizzas &&
+        pizzasState.pizzas.map((pizza) => {
+          return <Pizza key={pizza.id} {...pizza} />;
+        })} */}
+
       {/* iterate pizzas + prop drill pizza attributes*/}
-      {pizzasState.pizzas && pizzasState.pizzas.map((pizza) => {
-        return <Pizza key={pizza.id} {...pizza} />;
-      })}
+      {filteredPizzas.length > 0 &&
+        filteredPizzas.map((pizza) => {
+          return <Pizza key={pizza.id} {...pizza} />;
+        })}
     </div>
   );
 };
