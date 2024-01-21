@@ -1,6 +1,8 @@
 import React from "react";
 import "./pizza.css";
 import { useNavigate } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 // inline props destructuring
 const Pizza = ({ id, name, ingredients }) => {
@@ -17,14 +19,27 @@ const Pizza = ({ id, name, ingredients }) => {
       <div className="info">
         <h3>{name}</h3>
         <p>{ingredients}</p>
-        <button
-          className="details"
-          onClick={() => {
-            navigate(`/pizzas/${id}`);
-          }}
-        >
-          Details
-        </button>
+        <div className="bottom">
+          <button
+            className="details"
+            onClick={() => {
+              navigate(`/pizzas/${id}`);
+            }}
+          >
+            Details
+          </button>
+          <div className="edit-delete">
+            <EditIcon
+              sx={{ color: "#0077b6", cursor: "pointer", mr: "1rem" }}
+            />
+            <DeleteIcon
+              onClick={() => {
+                alert("🍕 Pizza deleted successfully!");
+              }}
+              sx={{ color: "#c1121f", cursor: "pointer" }}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
