@@ -54,7 +54,7 @@ const Pizzas = () => {
   return (
     <div className="pizzas">
       {/* iterate pizzas + prop drill pizza attributes*/}
-      {pizzasState.pizzas.map((pizza) => {
+      {pizzasState.pizzas && pizzasState.pizzas.map((pizza) => {
         return <Pizza key={pizza.id} {...pizza} />;
       })}
     </div>

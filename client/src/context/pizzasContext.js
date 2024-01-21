@@ -12,6 +12,12 @@ export const PizzasProvider = ({ children }) => {
     error: "",
   };
 
+  const handleDeletePizza = (id) => {
+    return pizzasState.pizzas.filter((pizza) => {
+      return pizza.id !== Number(id);
+    });
+  };
+
   // pizzasReducer to switch through action types
   const pizzasReducer = (state, action) => {
     switch (action.type) {
@@ -37,6 +43,14 @@ export const PizzasProvider = ({ children }) => {
           loading: false,
           pizzas: [],
           error: action.payload,
+        };
+
+      case "REMOVE_PIZZA":
+        return {
+          ...state,
+          loading: false,
+          pizzas: handleDeletePizza(action.payload),
+          error: "",
         };
 
       default:
