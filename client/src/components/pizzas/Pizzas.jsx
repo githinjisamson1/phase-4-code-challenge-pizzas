@@ -22,7 +22,9 @@ const Pizzas = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+
+        // load for 1 sec
         setTimeout(() => {
           dispatchForPizzas({ type: "FETCH_SUCCESS", payload: data });
         }, 1000);
@@ -33,11 +35,12 @@ const Pizzas = () => {
   };
   
 
-  // run useEffect on initial render/once
+  // run useEffect on initial render/once => pass empty dependency array
   useEffect(() => {
     fetchAllPizzas();
   }, []);
 
+  // linear progress indeterminate to spice up loading
   if (pizzasState.loading) {
     return (
       <Stack sx={{ width: "100%", color: "grey.500", mt: "5rem" }} spacing={2}>

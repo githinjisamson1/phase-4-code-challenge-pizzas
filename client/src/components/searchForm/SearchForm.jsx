@@ -19,6 +19,7 @@ const SearchForm = () => {
 
   return (
     <div className="search-form">
+      {/* controlled form input */}
       <form onSubmit={handleSubmit}>
         <input
           type="text"

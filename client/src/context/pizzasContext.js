@@ -44,7 +44,7 @@ export const PizzasProvider = ({ children }) => {
     }
   };
 
-  // useReducer => returns [state, dispatch]
+  // useReducer => returns [state, dispatch] === kind of resembles reducer()
   const [pizzasState, dispatchForPizzas] = useReducer(
     pizzasReducer,
     initialPizzasState
