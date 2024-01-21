@@ -1,0 +1,31 @@
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+.error-msg {
+  color: #333;
+  letter-spacing: 0.2rem;
+}
+.error-btn {
+  display: block;
+  padding: 10px;
+  letter-spacing: 0.2rem;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  background-color: #386641;
+  color: #fff;
+  cursor: pointer;
+  margin-right: auto;
+  margin-left: auto;
+  transition: all 300ms ease;
+}
+
+.error-btn:hover {
+  background-color: #fff;
+  color: #386641;
+  border: 1px solid #386641;
+}
