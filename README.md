@@ -171,3 +171,5 @@ For support, email githinjisamson148@gmail.com.
 Full Stack Development practice :)
 
 https://github.com/githinjisamson1/phase-4-code-challenge-pizzas/issues/2#issue-2092593733
+
+https://github.com/githinjisamson1/phase-4-code-challenge-pizzas/issues/1#issue-2092593444
