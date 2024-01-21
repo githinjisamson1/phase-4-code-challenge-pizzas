@@ -17,10 +17,11 @@ const SinglePizza = () => {
   // function to get single pizza
   // useCallback to prevent creating the function from scratch
   // "proxy": "http://127.0.0.1:5555"
-  //
 
   const fetchSinglePizza = useCallback(() => {
     setLoading(loading);
+
+    // fetch API - 1
     fetch(`/pizzas/${id}`)
       .then((response) => {
         return response.json();
@@ -28,6 +29,8 @@ const SinglePizza = () => {
       .then((data) => {
         console.log(data);
         setSinglePizzaState(data);
+
+        // load for 1 sec
         setTimeout(() => {
           setLoading(!loading);
         }, 2000);
@@ -43,12 +46,10 @@ const SinglePizza = () => {
     fetchSinglePizza();
   }, [id, fetchSinglePizza]);
 
+  // linear progress indeterminate to spice up loading
   if (loading) {
     return (
-      <Stack
-        sx={{ width: "100%", color: "grey.500", mt: "5rem" }}
-        spacing={2}
-      >
+      <Stack sx={{ width: "100%", color: "grey.500", mt: "5rem" }} spacing={2}>
         <LinearProgress color="secondary" />
         <LinearProgress color="success" />
         <LinearProgress color="inherit" />
