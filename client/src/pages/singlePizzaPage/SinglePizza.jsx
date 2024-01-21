@@ -27,13 +27,15 @@ const SinglePizza = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        setSinglePizzaState(data);
+        // console.log(data);
+        if (data) {
+          setSinglePizzaState(data);
+        }
 
-        // load for 1 sec
+        // load for 1.5 sec
         setTimeout(() => {
           setLoading(!loading);
-        }, 2000);
+        }, 1500);
       })
       .catch((error) => {
         console.log(error);
@@ -91,7 +93,7 @@ const SinglePizza = () => {
         src="https://i.pinimg.com/474x/a5/dd/0f/a5dd0f598b0ad28b56444e88bdb8fd7a.jpg"
         alt={singlePizzaState.name}
       />
-      {/* short circuit */}
+      {/* conditional rendering/short circuit */}
       {singlePizzaState && (
         <div className="details">
           <p>

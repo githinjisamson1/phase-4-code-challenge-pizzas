@@ -25,10 +25,10 @@ const Pizzas = () => {
       .then((data) => {
         // console.log(data);
 
-        // load for 1 sec
+        // load for 1.5 sec
         setTimeout(() => {
           dispatchForPizzas({ type: "FETCH_SUCCESS", payload: data });
-        }, 1000);
+        }, 1500);
       })
       .catch((error) => {
         dispatchForPizzas({ type: "FETCH_FAILURE", payload: error.message });
@@ -71,7 +71,7 @@ const Pizzas = () => {
     filteredPizzas = pizzasState.pizzas;
   }
 
-  console.log(filteredPizzas);
+  // console.log(filteredPizzas);
 
   return (
     <div className="pizzas">
