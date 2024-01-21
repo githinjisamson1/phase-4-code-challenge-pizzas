@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./pizza.css";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useGlobalPizzasContext } from "../../context/pizzasContext";
 
 // inline props destructuring
 const Pizza = ({ id, name, ingredients }) => {
   // for changing location programmatically
   const navigate = useNavigate();
+
+  // provide PizzasContext
+  const { dispatchForPizzas } = useGlobalPizzasContext;
+
+  // function to delete pizza by id
+  const deleteSinglePizza = (id) => {
+    // fetch API
+    fetch(`/pizzas/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        // convert readableStream to JSON
+        return response.json();
+      })
+      .then(() => {
+        dispatchForPizzas({ type: "REMOVE_PIZZA", payload: id });
+        alert("🍕 Pizza deleted successfully!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="pizza">
@@ -34,7 +60,7 @@ const Pizza = ({ id, name, ingredients }) => {
             />
             <DeleteIcon
               onClick={() => {
-                alert("🍕 Pizza deleted successfully!");
+                deleteSinglePizza(id);
               }}
               sx={{ color: "#c1121f", cursor: "pointer" }}
             />
