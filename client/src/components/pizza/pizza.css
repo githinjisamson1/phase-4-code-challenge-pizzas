@@ -50,3 +50,8 @@
 .pizza .info p {
   letter-spacing: 0.25rem;
 }
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
